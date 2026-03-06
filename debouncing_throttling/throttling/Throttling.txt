@@ -1,0 +1,27 @@
+Throttling in JavaScript is a performance optimization technique
+that ensures a function runs at most once in a given time interval,
+even if an event is triggered continuously.
+It’s especially useful for events like scroll, resize, or mouse move, which can fire dozens of times per second. 
+
+🔑 How Throttling Works
+Keeps track of the last time the function was executed.
+When the event fires again, it checks if enough time (delay) has passed since the last execution.
+If yes → run the function.
+If not → ignore the call until the interval has passed.
+
+Visual representation:
+Scroll events:  █ █ █ █ █ █ █ █ █ █ █ █
+Throttle calls: █       █       █       █
+
+Common Use Cases
+Scroll events → update position indicators without overwhelming the browser.
+Resize events → adjust layout at controlled intervals.
+Mouse movement → track cursor position efficiently.
+API requests → limit how often you hit an endpoint during continuous actions. 
+
+Difference Recap
+Technique	Behavior
+Debounce	Runs after a pause in events.
+Throttle	Runs at regular intervals during continuous events.
+✅ Summary:  
+Throttling makes sure a function executes at most once per given time window, even if events fire constantly. It’s like saying: “I’ll respond every second while you keep talking, no faster.”

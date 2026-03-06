@@ -1,0 +1,57 @@
+local Storage:
+Stores data directly in the browser.
+Persists even after the page is refreshed or the browser is closed. 
+It’s part of the Web Storage API.
+
+🔑 Key Features
+Persistent: Data stays until explicitly removed (no expiration).
+Per origin: Data is tied to the domain; other sites can’t access it.
+Capacity: Around 5MB per domain (much larger than cookies).
+
+Simple API: Works with key–value pairs.
+
+Basic Usage:
+1. Save Data:
+localStorage.setItem("username", "madhu");
+2. Retrieve Data:
+let user = localStorage.getItem("username");
+console.log(user); // "madhu"
+3. Remove Specific Item:
+localStorage.removeItem("username");
+4. Clear All Data:
+localStorage.clear();
+
+Example: Remembering Theme Preference
+// Save preference
+localStorage.setItem("theme", "dark");
+
+// Later, retrieve it
+const theme = localStorage.getItem("theme");
+if (theme === "dark") {
+  document.body.classList.add("dark-mode");
+}
+
+Difference from sessionStorage
+Feature	    localStorage	sessionStorage
+Expiration	Never (until  cleared)	Ends when tab/browser closes
+Scope	      Domain-wide	  Per tab/session
+Capacity	  ~5MB	        ~5MB
+✅ Summary:  
+localStorage is a simple, persistent way to store small amounts of data (like user preferences, tokens, or state) in the browser. 
+It’s synchronous, key–value based, and survives page reloads and browser restarts.
+
+`window` Object is the global object and local storage is stored on the window object of the browser.
+local storage stores key value pairs in string format.
+So if we want to store object then we need to use JSON.Stringfy(object);
+
+🔹 LocalStorage Basics:
+localStorage is stored separately from the browser’s cache.
+It persists across page reloads and browser restarts.
+It only goes away if you explicitly remove it (removeItem or clear) or if the user clears site data in the browser.
+
+🔹 What Happens When You Clear Browser Cache:
+Clear cache only → removes temporary files (images, scripts, stylesheets) the browser saved to load pages faster.
+👉 LocalStorage is not affected. Your stored keys/values remain.
+
+Clear cookies and site data (sometimes called “Clear browsing data” → “Cookies and other site data”) → this does remove localStorage along with cookies, sessionStorage, and IndexedDB.
+👉 Your app’s saved values will be wiped.

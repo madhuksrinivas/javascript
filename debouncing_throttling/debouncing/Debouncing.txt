@@ -1,0 +1,22 @@
+Debouncing:
+Performance optimization technique that ensures a function is not called too frequently when an event fires rapidly. 
+Instead, the function is delayed until a certain amount of time has passed since the last event trigger.
+
+🔑 Key Idea
+Without debouncing: Every keystroke, scroll, or resize event can trigger the function immediately, leading to performance issues.
+With debouncing: The function only runs once after the user stops triggering the event for a specified delay.
+
+Common Use Cases:
+Search inputs: Avoid sending API requests for every keystroke.
+Window resize: Prevent layout recalculations on every pixel change.
+Scroll events: Limit expensive DOM updates while scrolling.
+Button clicks: Prevent accidental double submissions.
+
+Debounce Vs Throttle:
+Technique	Behavior
+Debounce	Executes after a pause in events.
+Throttle	Executes at regular intervals during continuous events.
+
+✅ Summary:  
+Debouncing delays execution until activity stops, making it ideal for input fields, resize, and scroll events.
+It’s a way to rate-limit function calls and improve performance

@@ -1,0 +1,42 @@
+SessionStorage is the temporary sibling of localStorage in the Web Storage API.
+It lets you store key–value pairs in the browser, but only for the lifetime of a single tab/session.
+
+🔑 Key Characteristics
+Lifetime: Data is cleared when the tab or browser window is closed.
+Scope: Each tab has its own sessionStorage. Opening the same site in a new tab starts fresh.
+Capacity: Roughly 5MB per origin (similar to localStorage).
+API: Same methods as localStorage (setItem, getItem, removeItem, clear).
+
+Basic Usage
+1. Save Data
+sessionStorage.setItem("username", "madhu");
+
+2. Retrieve Data
+let user = sessionStorage.getItem("username");
+console.log(user); // "madhu"
+
+3. Remove Specific Item
+sessionStorage.removeItem("username");
+
+4. Clear All Data
+sessionStorage.clear();
+
+Example: Shopping Cart in a Tab
+
+// Add item to cart
+sessionStorage.setItem("cart", JSON.stringify(["Book", "Pen"]));
+
+// Retrieve cart
+const cart = JSON.parse(sessionStorage.getItem("cart"));
+console.log(cart); // ["Book", "Pen"]
+
+// Close tab → cart disappears
+
+Difference from LocalStorage
+Feature	      localStorage	          sessionStorage
+Expiration	  Never (until cleared)	  Ends when tab/browser closes
+Scope	      Domain-wide	          Per tab/session
+Capacity	  ~5MB	                  ~5MB
+✅ Summary:  
+Use sessionStorage when you want data to exist only while the user keeps a tab open (like temporary login state, form drafts, or cart items).
+ Unlike localStorage, it vanishes automatically once the tab is closed.
