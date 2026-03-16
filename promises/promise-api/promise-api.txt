@@ -1,0 +1,50 @@
++-------------------+---------------------------------------------------+---------------------------------------------------+---------------------------------------------------+---------------------------------------------------+
+| Method            | Resolves When                                     | Rejects When                                      | Return Value                                      | "Winning" Rule                                    |
++-------------------+---------------------------------------------------+---------------------------------------------------+---------------------------------------------------+---------------------------------------------------+
+| Promise.all       | All Promises resolve successfully                 | Any single Promise rejects                        | Array of resolved values                          | Waits for all; fails fast on first rejection      |
+| Promise.allSettled| All Promises settle (resolve or reject)           | Never (always resolves with statuses)             | Array of {status, value} or {status, reason}      | No winner; gives full report of all outcomes      |
+| Promise.race      | First Promise settles (resolve)                   | First Promise settles (reject)                    | Value or reason of the first settled Promise      | First to settle wins (success OR failure)         |
+| Promise.any       | First Promise resolves successfully               | All Promises reject (AggregateError)              | Value of the first fulfilled Promise              | First success wins; ignores failures until all fail|
++-------------------+---------------------------------------------------+---------------------------------------------------+---------------------------------------------------+---------------------------------------------------+
+
+Quick Summary:
+Promise.all → All must succeed, one failure stops everything.
+Promise.allSettled → Always gives you every result, success or failure.
+Promise.race → First to finish (success or failure) decides the outcome.
+Promise.any → First success wins; only fails if all fail.
+
+UseCase:
+Promise.all → Best when all must succeed (parallel API calls).
+Promise.allSettled → Best when you want every outcome, success or failure (logging/reporting).
+Promise.race → Best when you want the fastest result, regardless of success or failure (timeouts, competitions).
+Promise.any → Best when you want the first success, ignoring failures (fallback mirrors, redundant services).
+
+
+Extra:
+
+// Promise.all() waits for all Promises to finish.
+// If you don’t handle errors inside each Promise, one rejection will cause the whole Promise.all() to reject.
+// By adding .catch() inside each fetch, you ensure the overall Promise.all() still resolves, with error messages included.
+
+// Using Promise.all
+Promise.all([
+  Promise.reject("oops").catch(err => ({ error: err })),
+  Promise.resolve("ok")
+]).then(results => console.log("Promise.all:", results));
+
+// Using Promise.allSettled
+Promise.allSettled([
+  Promise.reject("oops"),
+  Promise.resolve("ok")
+]).then(results => console.log("Promise.allSettled:", results));
+
+output:
+Promise.all: [ { error: 'oops' }, 'ok' ]
+Promise.allSettled: [
+  { status: 'rejected', reason: 'oops' },
+  { status: 'fulfilled', value: 'ok' }
+]
+
+Takeaway:
+If you add .catch() inside each Promise, you’re “swallowing” errors, so Promise.all() behaves almost like Promise.allSettled().
+If you want to see the true success/failure status, don’t catch inside each Promise — let Promise.allSettled() show you both outcomes.
