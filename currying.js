@@ -1,5 +1,6 @@
+// Definition: Currying transforms a function with multiple arguments into a sequence of functions, each taking a single argument.
+// Benefit: Makes functions reusable, composable, and easier to chain.
 // Currying breaks down multi-arg-fun into single-arg-fun
-// makes code more flexible and reusable.
 
 // ---using bind---
 
@@ -65,3 +66,32 @@ const numbers = [1, 5, 10, 15];
 const result = numbers.filter(greaterThan(7));
 console.log(result); // [10, 15]
 // Here, greaterThan(7) returns a function that checks if a number is greater than 7, perfect for filter.
+
+
+// Currying with Async Functions:
+// Currying shines when combined with Promises or async/await, which are modern alternatives to callbacks.
+
+// Example: Currying + Promises
+const fetchData = url => fetch(url).then(res => res.json());
+
+const processData = data => result => {
+  console.log("Processed:", result);
+};
+
+fetchData("https://api.example.com")
+  .then(processData("some input"));
+
+// Example: Currying + Async/Await
+const curryFetch = url => async parser => {
+  const res = await fetch(url);
+  const data = await res.json();
+  return parser(data);
+};
+
+const parseUser = data => data.user;
+
+(async () => {
+  const user = await curryFetch("https://api.example.com")(parseUser);
+  console.log(user);
+})();
+
