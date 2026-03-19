@@ -1,0 +1,48 @@
+Async await in syntax feature in JS, that is used to handle
+asynchronous code in a readble, synchronous looking way.
+
+async always makes a function return a promise.
+await pauses execution inside that function until a Promise rejects/resolves.
+await always works inside async functions
+
+without async/await, the same logic would be used in .then() chaining.
+
+If the return vaule is not a promise, 
+then the async fun automaticlaly wrap the return value into a Promise object.
+If the return value is a promise,
+then it will return as it is(promise)
+
+async + await = handle's promises
+
++-----------------+--------------------------------------+---------------------------------------+
+| Aspect          | .then() Chains                       | async/await                           |
++-----------------+--------------------------------------+---------------------------------------+
+| Readability     | Nested callbacks, harder to follow   | Looks synchronous, easier to read     |
+| Error Handling  | .catch() at the end                  | try...catch block                     |
+| Flow Control    | Values passed through .then() chain  | Variables assigned directly with await|
+| Style           | More functional style                | More imperative style                 |
++-----------------+--------------------------------------+---------------------------------------+
+
+What Happens with await?
+Function marked async - When you declare a function async, it always returns a Promise.
+Execution until await - The function runs synchronously until it hits an await.
+
+At await:
+The function is paused at that point.
+The current stack frame is popped off the call stack (so the function isn’t blocking).
+Control returns to the event loop.
+The Promise you’re awaiting is scheduled in the microtask queue.
+
+When the awaited Promise resolves:
+The function is put back on the call stack.
+Execution resumes right after the await keyword, with the resolved value.
+
+When the Promise rejects:
+Instead of resuming with a value, the async function resumes with an exception.
+That rejection is thrown at the point of the await.
+If you have a try...catch around the await, the error is caught there.
+If not, the async function itself returns a rejected Promise
+
+
+.then() → callback style, more functional, values flow through chained functions.
+await → looks synchronous, pauses the async function, easier to read.
