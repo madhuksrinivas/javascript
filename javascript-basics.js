@@ -319,36 +319,39 @@ console.log("After pop():", vegetables);
 // shift() remove from beginning
 vegetables.shift();
 console.log("After shift():", vegetables);
+
 const nums = [1, 2, 3, 4, 5];
 
-// forEach() execute function for each element
+// forEach() - executes callback function for each and every element of the array
 console.log("forEach() example:");
 nums.forEach((num, index) => {
   console.log(`  Index ${index}: ${num}`);
 });
 
-// map() create new array with transformed elements
+// map() - creates a new array by applying callback fun for each and every element of the array
+// used to transform elements
 const doubled = nums.map((num) => num * 2);
 console.log("map() doubled array:", doubled);
 
-// filter() create new array with elements that pass test
+// filter() - creates a new array by returning only the elements that satisfies the condition defined in call back fun
+// used to filter elements
 const evens = nums.filter((num) => num % 2 === 0);
 console.log("filter() even numbers:", evens);
 
-// reduce() reduce array to single value
-const sum = nums.reduce((total, num) => total + num, 0);
+// reduce() - combines all elements of an array into single value by applying callback fun to each element
+// reduce array to single value
+const sum = nums.reduce((total, num) => total + num, 0); // here total = 0 for 1st iteration
 console.log("reduce() sum:", sum);
-const searchArray = ["apple", "banana", "orange", "apple"];
 
-console.log("indexOf 'apple':", searchArray.indexOf("apple"));
-console.log("includes 'banana':", searchArray.includes("banana"));
+const searchArray = ["apple", "banana", "orange", "apple"];
+console.log("indexOf 'apple':", searchArray.indexOf("apple")); // returns index 0
+console.log("includes 'banana':", searchArray.includes("banana")); // returns true
 
 // find() first element that satisfies condition
 const found = searchArray.find((fruit) => fruit.length > 5);
 console.log("First fruit with length > 5:", found);
 
 // PART 6: OBJECTS
-
 console.log("6.1 CREATING OBJECTS");
 
 // Object literal
@@ -358,31 +361,30 @@ const person1 = {
   city: "New York",
 };
 console.log("Object literal:", person1);
+
 const student = {
   firstName: "Alice",
   lastName: "Johnson",
   age: 20,
 };
-
-// Dot notation
+// Accessing items in object
+// 1. Dot notation
 console.log("Dot notation firstName:", student.firstName);
-
-// Bracket notation
+// 2. Bracket notation
 console.log("Bracket notation lastName:", student["lastName"]);
+
 const employee = {
   name: "Sarah",
   position: "Developer",
 };
-
 console.log("Original employee:", employee);
-
 // Adding new properties
 employee.department = "IT";
 console.log("After adding property:", employee);
-
 // Modifying existing properties
 employee.position = "Senior Developer";
 console.log("After modifying:", employee);
+
 const calculator = {
   x: 0,
   y: 0,
@@ -408,20 +410,19 @@ const calculator = {
 calculator.setValues(10, 5);
 console.log("Calculator add:", calculator.add());
 console.log("Calculator info:", calculator.getInfo());
+
 const sampleObject = {
   a: 1,
   b: 2,
   c: 3,
 };
+// Object.keys() get property names - returns array of keys
+console.log("Object.keys():", Object.keys(sampleObject)); // ['a', 'b', 'c']
+// Object.values() get property values - returns array of objects
+console.log("Object.values():", Object.values(sampleObject)); // [1, 2, 3]
+// Object.entries() get key-value pairs - returns an array of [key, value] pairs
+console.log("Object.entries():", Object.entries(sampleObject)); // [['a',1],['b',2],['c',3]]
 
-// Object.keys() get property names
-console.log("Object.keys():", Object.keys(sampleObject));
-
-// Object.values() get property values
-console.log("Object.values():", Object.values(sampleObject));
-
-// Object.entries() get key-value pairs
-console.log("Object.entries():", Object.entries(sampleObject));
 const userProfile = {
   username: "john_doe",
   email: "john@example.com",
@@ -434,7 +435,6 @@ console.log("Destructured username:", username);
 console.log("Destructured email:", email);
 
 // PART 7: LOOPS
-
 console.log("7.1 FOR LOOP");
 
 // Basic for loop
@@ -442,7 +442,6 @@ console.log("Basic for loop counting 1 to 5:");
 for (let i = 1; i <= 5; i++) {
   console.log(`  Count: ${i}`);
 }
-
 // For loop with arrays
 const fruitList = ["apple", "banana", "orange"];
 console.log("For loop with array:");
@@ -472,15 +471,15 @@ const personObj = {
 
 console.log("For...in loop with object:");
 for (let property in personObj) {
-  console.log(`  ${property}: ${personObj[property]}`);
+  console.log(`${property}: ${personObj[property]}`);
 }
 // For...of loop with arrays
 const animals = ["cat", "dog", "bird"];
 console.log("For...of loop with array:");
 for (let animal of animals) {
-  console.log(`  Animal: ${animal}`);
+  console.log(`Animal: ${animal}`);
 }
-// break statement
+// break statement - use to come out of the loop
 console.log("Break statement stop at first even number:");
 for (let i = 1; i <= 10; i++) {
   if (i % 2 === 0) {
@@ -490,19 +489,17 @@ for (let i = 1; i <= 10; i++) {
   console.log(`  Checking: ${i}`);
 }
 
-// continue statement
+// continue statement - skip the current execution and go to the next iteration
 console.log("Continue statement skip even numbers:");
 for (let i = 1; i <= 6; i++) {
   if (i % 2 === 0) {
     continue;
   }
-  console.log(`  Odd number: ${i}`);
+  console.log(`  Odd number: ${i}`); // skips if i % 2 === 0
 }
 
 // PART 8: CONDITIONALS
-
 console.log("8.1 IF STATEMENT");
-
 // Basic if statement
 let userAge = 25;
 if (userAge >= 18) {
@@ -510,7 +507,6 @@ if (userAge >= 18) {
 }
 
 console.log("\n8.2 IF-ELSE STATEMENT");
-
 let votingAge = 16;
 if (votingAge >= 18) {
   console.log("You can vote");
@@ -519,7 +515,6 @@ if (votingAge >= 18) {
 }
 
 console.log("\n8.3 IF-ELSE IF-ELSE CHAIN");
-
 // Grade evaluation
 let studentScore = 85;
 if (studentScore >= 90) {
